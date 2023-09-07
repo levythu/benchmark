@@ -29,9 +29,9 @@ pip uninstall -y torch torchvision
 conda install -y -c pytorch ${MAGMA_VERSION}
 # install pytorch and pytorch-cuda
 if [ $PYTORCH_VERSION = "2.0.1" ]; then
-  pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+  pip3 install torch torchvision  --index-url https://download.pytorch.org/whl/cu118
 else
-  pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/test/cu118
+  pip3 install torch torchvision  --index-url https://download.pytorch.org/whl/test/cu118
   # conda install --force-reinstall -y pytorch=${PYTORCH_VERSION} torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
 fi
 python -c 'import torch; print(torch.__version__); print(torch.version.git_version)'

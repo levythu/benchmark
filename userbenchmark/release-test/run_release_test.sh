@@ -18,13 +18,13 @@ mkdir -p "${RESULT_DIR}/mnist"
 pushd "${EXAMPLES_DIR}/mnist"
 export LOG_FILE=${RESULT_DIR}/mnist/result.log
 export MEM_FILE=${RESULT_DIR}/mnist/result_mem.log
-bash "${CURRENT_DIR}/monitor_proc.sh" python main.py --epochs 10 --cuda
+bash "${CURRENT_DIR}/monitor_proc.sh" python main.py --epochs 10
 # run mnist-hogwild
 mkdir -p ${RESULT_DIR}/mnist_hogwild
 pushd "${EXAMPLES_DIR}/mnist_hogwild"
 export LOG_FILE=${RESULT_DIR}/mnist_hogwild/result.log
 export MEM_FILE=${RESULT_DIR}/mnist_hogwild/result_mem.log
-bash "${CURRENT_DIR}/monitor_proc.sh" python main.py --epochs 10 --cuda
+bash "${CURRENT_DIR}/monitor_proc.sh" python main.py --epochs 10
 # run CPU WLM LSTM
 # mkdir -p ${RESULT_DIR}/wlm_cpu_lstm
 # pushd "${EXAMPLES_DIR}/word_language_model"
