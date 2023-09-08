@@ -19,6 +19,9 @@ wget https://raw.githubusercontent.com/phohenecker/switch-cuda/master/switch-cud
 if [ -e "/usr/local/cuda" ]; then
     sudo rm /usr/local/cuda
 fi
+conda create -y -n release_test_${PYTORCH_VERSION} python=3.10 numpy ffmpeg
+conda activate release_test_${PYTORCH_VERSION}
+
 sudo ln -sf /usr/local/cuda-${CUDA_VERSION} /usr/local/cuda
 conda uninstall -y pytorch torchvision pytorch-cuda
 conda uninstall -y pytorch torchvision cudatoolkit
