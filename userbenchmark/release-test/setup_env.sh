@@ -32,12 +32,7 @@ pip uninstall -y torch torchvision
 
 # install magma
 conda install -y -c pytorch ${MAGMA_VERSION}
-
-if [ $PYTORCH_VERSION == "2.1.0" ]; then
-conda install --force-reinstall -v -y pytorch torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
-# install pytorch and pytorch-cuda
-# conda install --force-reinstall -v -y pytorch=${PYTORCH_VERSION} torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
-fi
+conda install --force-reinstall -v -y pytorch=${PYTORCH_VERSION} torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
 
 python -c 'import torch; print(torch.__version__); print(torch.version.git_version)'
 
