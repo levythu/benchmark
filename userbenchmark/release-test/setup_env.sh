@@ -19,8 +19,10 @@ wget https://raw.githubusercontent.com/phohenecker/switch-cuda/master/switch-cud
 if [ -e "/usr/local/cuda" ]; then
     sudo rm /usr/local/cuda
 fi
-conda create -y -n release_test_${PYTORCH_VERSION} python=3.10 numpy ffmpeg
-conda activate release_test_${PYTORCH_VERSION}
+
+conda clean --all -y
+conda update --all -y
+
 
 sudo ln -sf /usr/local/cuda-${CUDA_VERSION} /usr/local/cuda
 conda uninstall -y pytorch torchvision pytorch-cuda
@@ -32,7 +34,7 @@ pip uninstall -y torch torchvision
 conda install -y -c pytorch ${MAGMA_VERSION}
 
 if [ $PYTORCH_VERSION == "2.1.0" ]; then
-conda install --force-reinstall -v -y pytorch pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
+conda install --force-reinstall -v -y pytorch torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
 # install pytorch and pytorch-cuda
 # conda install --force-reinstall -v -y pytorch=${PYTORCH_VERSION} torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
 fi
