@@ -33,12 +33,9 @@ conda install -y -c pytorch ${MAGMA_VERSION}
 
 if [ $PYTORCH_VERSION == "2.1.0" ]; then
 conda install --force-reinstall -v -y pytorch pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
-else
 # install pytorch and pytorch-cuda
 # conda install --force-reinstall -v -y pytorch=${PYTORCH_VERSION} torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
 fi
-
-
 
 python -c 'import torch; print(torch.__version__); print(torch.version.git_version)'
 
