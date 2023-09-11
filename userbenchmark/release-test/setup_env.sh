@@ -28,10 +28,13 @@ conda uninstall -y pytorch torchvision cudatoolkit
 # make sure we have a clean environment without pytorch
 pip uninstall -y torch torchvision
 
+
+# install pytorch and pytorch-cuda
+conda install --force-reinstall -v -y pytorch=${PYTORCH_VERSION} torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
+
 # install magma
 conda install -y -c pytorch ${MAGMA_VERSION}
-# install pytorch and pytorch-cuda
-conda install --force-reinstall -y pytorch=${PYTORCH_VERSION} torchvision pytorch-cuda=${CUDA_VERSION} -c ${PYTORCH_CHANNEL} -c nvidia
+
 python -c 'import torch; print(torch.__version__); print(torch.version.git_version)'
 
 # If torchvision is not yet available, uncomment the following and
