@@ -17,8 +17,6 @@ class Model(BenchmarkModel, HuggingFaceAuthMixin):
     DEFAULT_TRAIN_BSIZE = 1
     DEFAULT_EVAL_BSIZE = 1
     ALLOW_CUSTOMIZE_BSIZE = False
-    # Default eval precision on CUDA device is fp16
-    DEFAULT_EVAL_CUDA_PRECISION = "fp16"
 
     def __init__(self, test, device, batch_size=None, extra_args=[]):
         HuggingFaceAuthMixin.__init__(self)
@@ -32,19 +30,13 @@ class Model(BenchmarkModel, HuggingFaceAuthMixin):
             torch.randn(1, 1, 2048).to(self.device),
             {"text_embeds": torch.randn(1, 2560).to(self.device), "time_ids": torch.tensor([1]).to(self.device)}
         ]
-
-
-
-    def enable_fp16_half(self):
-        pass
-
     
     def get_module(self):
         self.pipe.unet, self.list_of_inputs
 
     def train(self):
-        raise NotImplementedError("Train test is not implemented for the stable diffusion model.")
+        raise NotImplementedError("Train is not implemented for the stable diffusion model.")
 
     def eval(self):
-        image = self.pipe(self.example_inputs)
+        image = self.pipe(*self.list_of_inputs)
         return (image, )
